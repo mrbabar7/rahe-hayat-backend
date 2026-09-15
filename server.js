@@ -107,9 +107,12 @@ app.use("/pages", require("./routes/publicPagesRouter"));
 app.use("/", require("./routes/seoPublicRouter"));
 app.use("/feature-flags", (req, res, next) => {
   if (req.method !== "GET") return next();
-  require("./controllers/admin/featureFlagsController").getPublicFlags(req, res);
+  require("./controllers/admin/featureFlagsController").getPublicFlags(
+    req,
+    res,
+  );
 });
-app.use("/auth", googleSignup);
+app.use("/api/auth", googleSignup);
 
 // Mounted last, after every real route — anything that reaches here is a
 // genuine 404, logged for the admin Redirects & 404s screen.
